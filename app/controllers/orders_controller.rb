@@ -4,6 +4,10 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+
+    # @lineItem = LineItem.where(order_id: params[:id]).joins("INNER JOIN products ON line_items.product_id = products.id")
+    @line_items = @order.line_items.includes(:product)
+    
   end
 
   def create

@@ -1,13 +1,44 @@
 <section class="orders-show">
 
   <header class="page-header">
-    <h1>Order #<%= @order.id %></h1>
+    <h1>Order <%= @order.id %></h1>
   </header>
 
   <div class="order-summary jumbotron">
     <h4>Thank you for your order!</h4>
   </div>
 
-  <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
-
-</section>
+    <div class="panel panel-default items">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Description</th>
+          <th>Image</th>
+          <th>Quantity</th>
+          <th>Total Price</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @line_items.find_each do |i| %>
+      <tr>
+        <td>
+          <%= i.product.name %>
+        </td>
+        <td>
+          <%= i.product.description  %>
+        </td>
+        <td>
+          <%= image_tag i.product.image.tiny %>
+        </td>
+        <td>
+          <%= i.quantity %>
+        </td>
+        <td>
+          $<%= number_with_precision(i.item_price_cents/100.00, precision:2) %>
+        </td>
+      </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
