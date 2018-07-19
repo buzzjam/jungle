@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Thank you for ordering from Jungle!</h1>
+    <p>
+      Your order number is <%= @order.id %>!.
+    </p>
+    
+    <div class="panel panel-default items">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Description</th>
+          <th>Image</th>
+          <th>Quantity</th>
+          <th>Total Price</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @line_items.find_each do |i| %>
+      <tr>
+        <td>
+          <%= i.product.name %>
+        </td>
+        <td>
+          <%= i.product.description  %>
+        </td>
+        <td>
+          <%= image_tag i.product.image.tiny %>
+        </td>
+        <td>
+          <%= i.quantity %>
+        </td>
+        <td>
+          $<%= number_with_precision(i.item_price_cents/100.00, precision:2) %>
+        </td>
+      </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+
+  </body>
+</html>
