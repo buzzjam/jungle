@@ -4,6 +4,7 @@
     <h1>My Cart</h1>
   </header>
 
+  <% if cart.size != 0 %>
   <div class="panel panel-default items">
     <table class="table table-bordered">
       <thead>
@@ -49,5 +50,10 @@
       <% end %>
     </div>
   </div>
+
+  <%else%>
+        <div>Cart is empty! Please go back to the home page!</div>
+        <div><%= link_to "Home page", root_path %></div>
+  <%end%>
 
 </section>
