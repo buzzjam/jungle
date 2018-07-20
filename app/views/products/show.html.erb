@@ -26,6 +26,38 @@
       </div>
     </div>
 
+    <div> 
+    
+    <h3>Reviews:</h3>
+
+    <% @reviews.reverse_each do |r| %>
+      <div>
+        <strong>User: </strong> <%= r.user.first_name %>
+        <strong>Description:</strong><%= r.description %>
+        <strong>Rating:</strong> <%= r.rating %>
+        <% if current_user == r.user %>
+        <%= link_to 'Delete', [r.product, r],
+          method: :delete,
+          data: {confirm: 'Are you sure?'}%>
+        <% end %>
+      </div>
+    <% end %>
+    </div>
+
+    <div> 
+
+    <h3>Write a Review!</h3>
+      
+    <%= form_for [@product, @product.reviews.build] do |f| %>
+
+      Review: <%= f.text_area :description %>
+      Rating: <%= f.select :rating, [1,2,3,4,5] %>
+      <%= f.submit "Submit" %>
+    
+    <% end %>
+
+    </div>
+
   </article>
 
 </section>
