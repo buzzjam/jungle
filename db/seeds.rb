@@ -135,8 +135,8 @@ cat3.products.create!({
 user = User.create!({
   first_name: "Frank",
   last_name: "Zhou",
-  email: "frank__zhou@hotmail.com",
-  password: "a"
+  email: "frank@tank.com",
+  password: "password"
 })
 
 user.reviews.create({
