@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
 
-  before_action :require_login
+  before_filter :require_login
   
   def create
     @product = Product.find(params[:product_id])
@@ -38,7 +38,7 @@ class ReviewsController < ApplicationController
   def require_login
     if !logged_in?
       flash[:error] = "You are not logged in!"
-      redirect_to root_path
-    end
+      redirect_to login_path
+    end 
   end
 end
