@@ -13,11 +13,19 @@ RSpec.feature "ProductDetails", type: :feature , js: true do
       )
   end
 
-  scenario "They see all products" do
+  scenario "See product details" do
     visit root_path
     page.find('.product').find('header').click
     expect(page).to have_content("Description")
-    save_screenshot
+    # save_screenshot
+
+  end
+
+  scenario "See product details" do
+    visit root_path
+    page.find('.product').find('.btn-default').click
+    expect(page).to have_content("Description")
+    # save_screenshot
 
   end
 
